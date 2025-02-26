@@ -1,9 +1,19 @@
 from conexion_bd import conectar_bd
 
 import mysql.connector
+import re
+
+def validar_datos_usuario(nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni):
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        raise ValueError("Email no válido")
+    if len(contrasena) < 6:
+        raise ValueError("La contraseña debe tener al menos 6 caracteres")
+    # Agrega más validaciones según sea necesario
+    return True
 
 def crear_usuario(conexion, nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni):
     try:
+        validar_datos_usuario(nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni)
         cursor = conexion.cursor()
         sql = """
         INSERT INTO usuarios (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni)
@@ -15,6 +25,8 @@ def crear_usuario(conexion, nombre, apellido, email, contrasena, telefono, direc
         print("Usuario creado exitosamente")
     except mysql.connector.Error as error:
         print(f"Error al crear usuario: {error}")
+    except ValueError as ve:
+        print(f"Error de validación: {ve}")
 
 def leer_usuarios(conexion):
     try:
@@ -37,6 +49,31 @@ def mostrar_tablas(conexion):
     except mysql.connector.Error as error:
         print(f"Error al mostrar tablas: {error}")
 
+def actualizar_usuario(conexion, usuario_id, nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni):
+    try:
+        cursor = conexion.cursor()
+        sql = """
+        UPDATE usuarios
+        SET nombre = %s, apellido = %s, email = %s, contrasena = %s, telefono = %s, direccion = %s, fecha_nacimiento = %s, dni = %s
+        WHERE id = %s
+        """
+        values = (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni, usuario_id)
+        cursor.execute(sql, values)
+        conexion.commit()
+        print("Usuario actualizado exitosamente")
+    except mysql.connector.Error as error:
+        print(f"Error al actualizar usuario: {error}")
+
+def eliminar_usuario(conexion, usuario_id):
+    try:
+        cursor = conexion.cursor()
+        sql = "DELETE FROM usuarios WHERE id = %s"
+        cursor.execute(sql, (usuario_id,))
+        conexion.commit()
+        print("Usuario eliminado exitosamente")
+    except mysql.connector.Error as error:
+        print(f"Error al eliminar usuario: {error}")
+
 # Ejemplo de uso
 conexion = conectar_bd()
 
@@ -55,3 +92,4 @@ if conexion:
     leer_usuarios(conexion)
     mostrar_tablas(conexion)
     conexion.close()
+

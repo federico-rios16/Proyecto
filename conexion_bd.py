@@ -12,4 +12,12 @@ def conectar_bd():
     except mysql.connector.Error as error:
         print(f"Error al conectar a la base de datos: {error}")
         return None
-    
+
+def cerrar_conexion(conexion):
+    try:
+        if conexion.is_connected():
+            conexion.close()
+            print("Conexión cerrada correctamente")
+    except mysql.connector.Error as error:
+        print(f"Error al cerrar la conexión a la base de datos: {error}")
+
