@@ -1,4 +1,5 @@
 import mysql.connector
+from mysql.connector import Error
 
 def conectar_bd():
     try:
@@ -11,7 +12,7 @@ def conectar_bd():
         if conexion.is_connected():
             print("Conexión a la base de datos exitosa")
         return conexion
-    except mysql.connector.Error as error:
+    except Error as error:
         print(f"Error al conectar a la base de datos: {error}")
         return None
 
@@ -20,6 +21,6 @@ def cerrar_conexion(conexion):
         if conexion.is_connected():
             conexion.close()
             print("Conexión cerrada correctamente")
-    except mysql.connector.Error as error:
+    except Error as error:
         print(f"Error al cerrar la conexión a la base de datos: {error}")
 
