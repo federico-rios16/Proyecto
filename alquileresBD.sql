@@ -1,4 +1,4 @@
-#CREATE DATABASE if NOT EXISTS Alquileres;
+#CREATE DATABASE Alquileres;
 
 #USE Alquileres;
 
