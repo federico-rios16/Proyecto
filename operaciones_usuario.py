@@ -4,6 +4,24 @@ from validacion import validar_datos_usuario
 from logger import log_error
 
 def crear_usuario(conexion, nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni):
+    """
+    Crea un nuevo usuario en la base de datos.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+        nombre (str): Nombre del usuario.
+        apellido (str): Apellido del usuario.
+        email (str): Email del usuario.
+        contrasena (str): Contraseña del usuario.
+        telefono (str): Teléfono del usuario.
+        direccion (str): Dirección del usuario.
+        fecha_nacimiento (str): Fecha de nacimiento del usuario.
+        dni (str): DNI del usuario.
+
+    Raises:
+        ValueError: Si los datos del usuario no son válidos.
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+    """
     try:
         validar_datos_usuario(nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni)
         cursor = conexion.cursor()
@@ -23,6 +41,15 @@ def crear_usuario(conexion, nombre, apellido, email, contrasena, telefono, direc
         print(f"Error de validación: {ve}")
 
 def leer_usuarios(conexion):
+    """
+    Lee y muestra todos los usuarios de la base de datos.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+
+    Raises:
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+    """
     try:
         cursor = conexion.cursor()
         cursor.execute("SELECT * FROM usuarios")
@@ -34,6 +61,15 @@ def leer_usuarios(conexion):
         print(f"Error al leer usuarios: {error}")
 
 def mostrar_tablas(conexion):
+    """
+    Muestra todas las tablas en la base de datos.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+
+    Raises:
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+    """
     try:
         cursor = conexion.cursor()
         cursor.execute("SHOW TABLES")
@@ -46,6 +82,24 @@ def mostrar_tablas(conexion):
         print(f"Error al mostrar tablas: {error}")
 
 def actualizar_usuario(conexion, usuario_id, nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni):
+    """
+    Actualiza la información de un usuario existente en la base de datos.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+        usuario_id (int): ID del usuario a actualizar.
+        nombre (str): Nombre del usuario.
+        apellido (str): Apellido del usuario.
+        email (str): Email del usuario.
+        contrasena (str): Contraseña del usuario.
+        telefono (str): Teléfono del usuario.
+        direccion (str): Dirección del usuario.
+        fecha_nacimiento (str): Fecha de nacimiento del usuario.
+        dni (str): DNI del usuario.
+
+    Raises:
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+    """
     try:
         cursor = conexion.cursor()
         sql = """
@@ -62,6 +116,16 @@ def actualizar_usuario(conexion, usuario_id, nombre, apellido, email, contrasena
         print(f"Error al actualizar usuario: {error}")
 
 def eliminar_usuario(conexion, usuario_id):
+    """
+    Elimina un usuario de la base de datos.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+        usuario_id (int): ID del usuario a eliminar.
+
+    Raises:
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+    """
     try:
         cursor = conexion.cursor()
         sql = "DELETE FROM usuarios WHERE id = %s"
@@ -73,6 +137,16 @@ def eliminar_usuario(conexion, usuario_id):
         print(f"Error al eliminar usuario: {error}")
 
 def buscar_usuario_por_nombre(conexion, nombre):
+    """
+    Busca usuarios por nombre en la base de datos.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+        nombre (str): Nombre del usuario a buscar.
+
+    Raises:
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+    """
     try:
         cursor = conexion.cursor()
         sql = "SELECT * FROM usuarios WHERE nombre = %s"
@@ -88,6 +162,17 @@ def buscar_usuario_por_nombre(conexion, nombre):
         print(f"Error al buscar usuario: {error}")
 
 def listar_usuarios_paginados(conexion, pagina, tamano_pagina):
+    """
+    Lista usuarios con paginación.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+        pagina (int): Número de la página.
+        tamano_pagina (int): Tamaño de la página.
+
+    Raises:
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+    """
     try:
         cursor = conexion.cursor()
         offset = (pagina - 1) * tamano_pagina
@@ -101,6 +186,17 @@ def listar_usuarios_paginados(conexion, pagina, tamano_pagina):
         print(f"Error al listar usuarios: {error}")
 
 def exportar_usuarios_a_csv(conexion, archivo_csv):
+    """
+    Exporta usuarios a un archivo CSV.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+        archivo_csv (str): Ruta del archivo CSV.
+
+    Raises:
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+        IOError: Si ocurre un error al escribir el archivo CSV.
+    """
     try:
         cursor = conexion.cursor()
         cursor.execute("SELECT * FROM usuarios")
@@ -118,6 +214,17 @@ def exportar_usuarios_a_csv(conexion, archivo_csv):
         print(f"Error al escribir el archivo CSV: {io_error}")
 
 def importar_usuarios_desde_csv(conexion, archivo_csv):
+    """
+    Importa usuarios desde un archivo CSV.
+
+    Args:
+        conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
+        archivo_csv (str): Ruta del archivo CSV.
+
+    Raises:
+        mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
+        IOError: Si ocurre un error al leer el archivo CSV.
+    """
     try:
         with open(archivo_csv, mode='r') as file:
             reader = csv.reader(file)
