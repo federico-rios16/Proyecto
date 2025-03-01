@@ -24,3 +24,12 @@ def cerrar_conexion(conexion):
     except Error as error:
         print(f"Error al cerrar la conexión a la base de datos: {error}")
 
+if __name__ == "__main__":
+    conexion = conectar_bd()
+    if conexion:
+        cursor = conexion.cursor()
+        cursor.execute("SHOW DATABASES;")
+        for db in cursor:
+            print(db)
+        cerrar_conexion(conexion)
+

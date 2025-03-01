@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS Alquileres;
 
-#USE Alquileres;
+USE Alquileres;
 
 #DROP DATABASE Alquleres;
 
@@ -71,6 +71,54 @@ INSERT INTO propiedades (titulo, precio, disponible) VALUES (
 -- Consultas de ejemplo
 SELECT * FROM usuarios;
 SELECT titulo, precio FROM propiedades WHERE disponible = true;
+
+import mysql.connector
+from mysql.connector import Error
+
+def conectar_bd():
+    try:
+        conexion = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1234",
+            database="alquileres"
+        )
+        if conexion.is_connected():
+            print("Conexión a la base de datos exitosa")
+        return conexion
+    except Error as error:
+        print(f"Error al conectar a la base de datos: {error}")
+        return None
+
+def cerrar_conexion(conexion):
+    try:
+        if conexion.is_connected():
+            conexion.close()
+            print("Conexión cerrada correctamente")
+    except Error as error:
+        print(f"Error al cerrar la conexión a la base de datos: {error}")
+
+def insertar_usuario(conexion, nombre, apellido, email, contrasena):
+    try:
+        cursor = conexion.cursor()
+        cursor.execute("SELECT email FROM usuarios WHERE email = %s", (email,))
+        if cursor.fetchone() is None:
+            cursor.execute(
+                "INSERT INTO usuarios (nombre, apellido, email, contrasena) VALUES (%s, %s, %s, %s)",
+                (nombre, apellido, email, contrasena)
+            )
+            conexion.commit()
+            print("Usuario insertado correctamente")
+        else:
+            print("El correo electrónico ya existe")
+    except Error as error:
+        print(f"Error al insertar usuario: {error}")
+
+if __name__ == "__main__":
+    conexion = conectar_bd()
+    if conexion:
+        insertar_usuario(conexion, 'Juan', 'Pérez', 'juan@ejemplo.com', 'contraseña123')
+        cerrar_conexion(conexion)
 
 
 
