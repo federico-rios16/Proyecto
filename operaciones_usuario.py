@@ -2,6 +2,7 @@ import mysql.connector
 import csv
 from validacion import validar_datos_usuario
 from logger import log_error
+from mysql.connector import Error
 
 def crear_usuario(conexion, nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni):
     """
@@ -25,15 +26,18 @@ def crear_usuario(conexion, nombre, apellido, email, contrasena, telefono, direc
     try:
         validar_datos_usuario(nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni)
         cursor = conexion.cursor()
-        sql = """
-        INSERT INTO usuarios (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-        """
-        values = (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni)
-        cursor.execute(sql, values)
-        conexion.commit()
-        print("Usuario creado exitosamente")
-    except mysql.connector.Error as error:
+        cursor.execute("SELECT email FROM usuarios WHERE email = %s", (email,))
+        if cursor.fetchone() is None:
+            contrasena_encriptada = encriptar_contrasena(contrasena)
+            cursor.execute(
+                "INSERT INTO usuarios (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                (nombre, apellido, email, contrasena_encriptada, telefono, direccion, fecha_nacimiento, dni)
+            )
+            conexion.commit()
+            print("Usuario insertado correctamente")
+        else:
+            print("El correo electrónico ya existe")
+    except Error as error:
         log_error(f"Error al crear usuario: {error}")
         print(f"Error al crear usuario: {error}")
     except ValueError as ve:
@@ -53,12 +57,12 @@ def leer_usuarios(conexion):
     try:
         cursor = conexion.cursor()
         cursor.execute("SELECT * FROM usuarios")
-        resultados = cursor.fetchall()
-        for usuario in resultados:
-            print(usuario)
-    except mysql.connector.Error as error:
+        usuarios = cursor.fetchall()
+        return usuarios if usuarios else []
+    except Error as error:
         log_error(f"Error al leer usuarios: {error}")
         print(f"Error al leer usuarios: {error}")
+        return []
 
 def mostrar_tablas(conexion):
     """
@@ -74,10 +78,9 @@ def mostrar_tablas(conexion):
         cursor = conexion.cursor()
         cursor.execute("SHOW TABLES")
         tablas = cursor.fetchall()
-        print("Tablas en la base de datos:")
         for tabla in tablas:
-            print(tabla[0])
-    except mysql.connector.Error as error:
+            print(tabla)
+    except Error as error:
         log_error(f"Error al mostrar tablas: {error}")
         print(f"Error al mostrar tablas: {error}")
 
@@ -149,15 +152,13 @@ def buscar_usuario_por_nombre(conexion, nombre):
     """
     try:
         cursor = conexion.cursor()
-        sql = "SELECT * FROM usuarios WHERE nombre = %s"
-        cursor.execute(sql, (nombre,))
-        usuarios = cursor.fetchall()
-        if usuarios:
-            for usuario in usuarios:
-                print(usuario)
+        cursor.execute("SELECT * FROM usuarios WHERE nombre = %s", (nombre,))
+        usuario = cursor.fetchone()
+        if usuario:
+            print(usuario)
         else:
-            print("No se encontraron usuarios con ese nombre")
-    except mysql.connector.Error as error:
+            print("Usuario no encontrado")
+    except Error as error:
         log_error(f"Error al buscar usuario: {error}")
         print(f"Error al buscar usuario: {error}")
 
@@ -176,12 +177,11 @@ def listar_usuarios_paginados(conexion, pagina, tamano_pagina):
     try:
         cursor = conexion.cursor()
         offset = (pagina - 1) * tamano_pagina
-        sql = "SELECT * FROM usuarios LIMIT %s OFFSET %s"
-        cursor.execute(sql, (tamano_pagina, offset))
+        cursor.execute("SELECT * FROM usuarios LIMIT %s OFFSET %s", (tamano_pagina, offset))
         usuarios = cursor.fetchall()
         for usuario in usuarios:
             print(usuario)
-    except mysql.connector.Error as error:
+    except Error as error:
         log_error(f"Error al listar usuarios: {error}")
         print(f"Error al listar usuarios: {error}")
 
@@ -201,12 +201,11 @@ def exportar_usuarios_a_csv(conexion, archivo_csv):
         cursor = conexion.cursor()
         cursor.execute("SELECT * FROM usuarios")
         usuarios = cursor.fetchall()
-        with open(archivo_csv, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([i[0] for i in cursor.description])  # Escribir encabezados
-            writer.writerows(usuarios)
-        print(f"Usuarios exportados exitosamente a {archivo_csv}")
-    except mysql.connector.Error as error:
+        with open(archivo_csv, 'w') as file:
+            for usuario in usuarios:
+                file.write(','.join(map(str, usuario)) + '\n')
+        print(f"Usuarios exportados a {archivo_csv}")
+    except Error as error:
         log_error(f"Error al exportar usuarios: {error}")
         print(f"Error al exportar usuarios: {error}")
     except IOError as io_error:
@@ -226,15 +225,20 @@ def importar_usuarios_desde_csv(conexion, archivo_csv):
         IOError: Si ocurre un error al leer el archivo CSV.
     """
     try:
-        with open(archivo_csv, mode='r') as file:
-            reader = csv.reader(file)
-            next(reader)  # Saltar encabezados
-            for row in reader:
-                crear_usuario(conexion, *row)
-        print(f"Usuarios importados exitosamente desde {archivo_csv}")
-    except mysql.connector.Error as error:
+        with open(archivo_csv, 'r') as file:
+            for linea in file:
+                datos = linea.strip().split(',')
+                crear_usuario(conexion, *datos)
+        print(f"Usuarios importados desde {archivo_csv}")
+    except Error as error:
         log_error(f"Error al importar usuarios: {error}")
         print(f"Error al importar usuarios: {error}")
     except IOError as io_error:
         log_error(f"Error al leer el archivo CSV: {io_error}")
         print(f"Error al leer el archivo CSV: {io_error}")
+
+def encriptar_contrasena(contrasena):
+    import bcrypt
+    salt = bcrypt.gensalt()
+    contrasena_encriptada = bcrypt.hashpw(contrasena.encode('utf-8'), salt)
+    return contrasena_encriptada
