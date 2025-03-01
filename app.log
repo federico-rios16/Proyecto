@@ -59,3 +59,29 @@
 2025-03-01 05:45:56,036 INFO 127.0.0.1 - - [01/Mar/2025 05:45:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
 2025-03-01 05:49:37,886 INFO 127.0.0.1 - - [01/Mar/2025 05:49:37] "[32mPOST /add HTTP/1.1[0m" 302 -
 2025-03-01 05:49:37,914 INFO 127.0.0.1 - - [01/Mar/2025 05:49:37] "GET / HTTP/1.1" 200 -
+2025-03-01 06:05:56,737 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-01 06:05:56,737 INFO [33mPress CTRL+C to quit[0m
+2025-03-01 06:05:56,740 INFO  * Restarting with stat
+2025-03-01 06:05:57,442 WARNING  * Debugger is active!
+2025-03-01 06:05:57,447 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:06:10,068 INFO 127.0.0.1 - - [01/Mar/2025 06:06:10] "GET / HTTP/1.1" 200 -
+2025-03-01 06:09:24,882 INFO 127.0.0.1 - - [01/Mar/2025 06:09:24] "GET / HTTP/1.1" 200 -
+2025-03-01 06:09:27,853 INFO 127.0.0.1 - - [01/Mar/2025 06:09:27] "GET / HTTP/1.1" 200 -
+2025-03-01 06:10:00,660 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-01 06:10:00,661 INFO [33mPress CTRL+C to quit[0m
+2025-03-01 06:10:00,663 INFO  * Restarting with stat
+2025-03-01 06:10:01,358 WARNING  * Debugger is active!
+2025-03-01 06:10:01,362 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:10:07,602 INFO 127.0.0.1 - - [01/Mar/2025 06:10:07] "GET / HTTP/1.1" 200 -
+2025-03-01 06:12:12,011 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-01 06:12:12,133 INFO  * Restarting with stat
+2025-03-01 06:12:13,508 WARNING  * Debugger is active!
+2025-03-01 06:12:13,515 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:35:02,728 INFO  * Detected change in 'D:\\Proyecto\\operaciones_usuario.py', reloading
+2025-03-01 06:35:02,992 INFO  * Restarting with stat
+2025-03-01 06:35:04,248 WARNING  * Debugger is active!
+2025-03-01 06:35:04,252 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:35:59,599 INFO  * Detected change in 'D:\\Proyecto\\operaciones_usuario.py', reloading
+2025-03-01 06:35:59,919 INFO  * Restarting with stat

@@ -34,12 +34,12 @@ def crear_usuario(conexion, nombre, apellido, email, contrasena, telefono, direc
                 (nombre, apellido, email, contrasena_encriptada, telefono, direccion, fecha_nacimiento, dni)
             )
             conexion.commit()
-            print("Usuario insertado correctamente")
+            return True
         else:
-            print("El correo electrónico ya existe")
+            return False
     except Error as error:
-        log_error(f"Error al crear usuario: {error}")
-        print(f"Error al crear usuario: {error}")
+        print(f"Error al insertar usuario: {error}")
+        return False
     except ValueError as ve:
         log_error(f"Error de validación: {ve}")
         print(f"Error de validación: {ve}")
@@ -60,7 +60,6 @@ def leer_usuarios(conexion):
         usuarios = cursor.fetchall()
         return usuarios if usuarios else []
     except Error as error:
-        log_error(f"Error al leer usuarios: {error}")
         print(f"Error al leer usuarios: {error}")
         return []
 
@@ -81,7 +80,6 @@ def mostrar_tablas(conexion):
         for tabla in tablas:
             print(tabla)
     except Error as error:
-        log_error(f"Error al mostrar tablas: {error}")
         print(f"Error al mostrar tablas: {error}")
 
 def actualizar_usuario(conexion, usuario_id, nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni):
@@ -113,10 +111,10 @@ def actualizar_usuario(conexion, usuario_id, nombre, apellido, email, contrasena
         values = (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni, usuario_id)
         cursor.execute(sql, values)
         conexion.commit()
-        print("Usuario actualizado exitosamente")
+        return True
     except mysql.connector.Error as error:
-        log_error(f"Error al actualizar usuario: {error}")
         print(f"Error al actualizar usuario: {error}")
+        return False
 
 def eliminar_usuario(conexion, usuario_id):
     """
@@ -134,10 +132,10 @@ def eliminar_usuario(conexion, usuario_id):
         sql = "DELETE FROM usuarios WHERE id = %s"
         cursor.execute(sql, (usuario_id,))
         conexion.commit()
-        print("Usuario eliminado exitosamente")
+        return True
     except mysql.connector.Error as error:
-        log_error(f"Error al eliminar usuario: {error}")
         print(f"Error al eliminar usuario: {error}")
+        return False
 
 def buscar_usuario_por_nombre(conexion, nombre):
     """
@@ -159,7 +157,6 @@ def buscar_usuario_por_nombre(conexion, nombre):
         else:
             print("Usuario no encontrado")
     except Error as error:
-        log_error(f"Error al buscar usuario: {error}")
         print(f"Error al buscar usuario: {error}")
 
 def listar_usuarios_paginados(conexion, pagina, tamano_pagina):
@@ -182,7 +179,6 @@ def listar_usuarios_paginados(conexion, pagina, tamano_pagina):
         for usuario in usuarios:
             print(usuario)
     except Error as error:
-        log_error(f"Error al listar usuarios: {error}")
         print(f"Error al listar usuarios: {error}")
 
 def exportar_usuarios_a_csv(conexion, archivo_csv):
@@ -206,7 +202,6 @@ def exportar_usuarios_a_csv(conexion, archivo_csv):
                 file.write(','.join(map(str, usuario)) + '\n')
         print(f"Usuarios exportados a {archivo_csv}")
     except Error as error:
-        log_error(f"Error al exportar usuarios: {error}")
         print(f"Error al exportar usuarios: {error}")
     except IOError as io_error:
         log_error(f"Error al escribir el archivo CSV: {io_error}")
@@ -231,7 +226,6 @@ def importar_usuarios_desde_csv(conexion, archivo_csv):
                 crear_usuario(conexion, *datos)
         print(f"Usuarios importados desde {archivo_csv}")
     except Error as error:
-        log_error(f"Error al importar usuarios: {error}")
         print(f"Error al importar usuarios: {error}")
     except IOError as io_error:
         log_error(f"Error al leer el archivo CSV: {io_error}")
