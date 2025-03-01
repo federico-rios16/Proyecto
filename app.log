@@ -95,3 +95,60 @@
 2025-03-01 06:36:58,714 INFO  * Debugger PIN: 119-124-255
 2025-03-01 06:37:02,801 INFO 127.0.0.1 - - [01/Mar/2025 06:37:02] "GET / HTTP/1.1" 200 -
 2025-03-01 06:37:07,100 INFO 127.0.0.1 - - [01/Mar/2025 06:37:07] "GET / HTTP/1.1" 200 -
+2025-03-01 06:39:38,286 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-01 06:39:38,396 INFO  * Restarting with stat
+2025-03-01 06:39:38,670 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-01 06:39:38,870 INFO  * Restarting with stat
+2025-03-01 06:39:39,633 WARNING  * Debugger is active!
+2025-03-01 06:39:39,640 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:39:40,021 WARNING  * Debugger is active!
+2025-03-01 06:39:40,026 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:40:21,946 INFO  * Detected change in 'D:\\Proyecto\\operaciones_usuario.py', reloading
+2025-03-01 06:40:22,141 INFO  * Restarting with stat
+2025-03-01 06:40:22,481 INFO  * Detected change in 'D:\\Proyecto\\operaciones_usuario.py', reloading
+2025-03-01 06:40:22,616 INFO  * Restarting with stat
+2025-03-01 06:40:23,535 WARNING  * Debugger is active!
+2025-03-01 06:40:23,540 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:40:23,857 WARNING  * Debugger is active!
+2025-03-01 06:40:23,861 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:41:23,805 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-01 06:41:23,810 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-01 06:41:23,962 INFO  * Restarting with stat
+2025-03-01 06:41:23,967 INFO  * Restarting with stat
+2025-03-01 06:41:24,983 WARNING  * Debugger is active!
+2025-03-01 06:41:24,988 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:41:25,100 WARNING  * Debugger is active!
+2025-03-01 06:41:25,107 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:41:30,078 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-01 06:41:30,189 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-01 06:41:30,250 INFO  * Restarting with stat
+2025-03-01 06:41:30,319 INFO  * Restarting with stat
+2025-03-01 06:41:31,876 WARNING  * Debugger is active!
+2025-03-01 06:41:31,888 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:41:31,970 WARNING  * Debugger is active!
+2025-03-01 06:41:31,975 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:42:21,140 INFO 127.0.0.1 - - [01/Mar/2025 06:42:21] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-03-01 06:42:21,324 INFO 127.0.0.1 - - [01/Mar/2025 06:42:21] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-01 06:42:21,335 INFO 127.0.0.1 - - [01/Mar/2025 06:42:21] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-01 06:42:21,392 INFO 127.0.0.1 - - [01/Mar/2025 06:42:21] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=n4vVKQy2f3uMHchcsRuM HTTP/1.1" 200 -
+2025-03-01 06:42:21,476 INFO 127.0.0.1 - - [01/Mar/2025 06:42:21] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-03-01 06:42:46,333 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-01 06:42:46,334 INFO [33mPress CTRL+C to quit[0m
+2025-03-01 06:42:46,337 INFO  * Restarting with stat
+2025-03-01 06:42:47,044 WARNING  * Debugger is active!
+2025-03-01 06:42:47,049 INFO  * Debugger PIN: 119-124-255
+2025-03-01 06:42:49,689 INFO 127.0.0.1 - - [01/Mar/2025 06:42:49] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-03-01 06:42:49,773 INFO 127.0.0.1 - - [01/Mar/2025 06:42:49] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-01 06:42:49,775 INFO 127.0.0.1 - - [01/Mar/2025 06:42:49] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-01 06:42:49,855 INFO 127.0.0.1 - - [01/Mar/2025 06:42:49] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=n4vVKQy2f3uMHchcsRuM HTTP/1.1[0m" 304 -
+2025-03-01 06:42:49,872 INFO 127.0.0.1 - - [01/Mar/2025 06:42:49] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-03-01 06:42:59,062 INFO 127.0.0.1 - - [01/Mar/2025 06:42:59] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-03-01 06:42:59,129 INFO 127.0.0.1 - - [01/Mar/2025 06:42:59] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-01 06:42:59,129 INFO 127.0.0.1 - - [01/Mar/2025 06:42:59] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-01 06:42:59,145 INFO 127.0.0.1 - - [01/Mar/2025 06:42:59] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=n4vVKQy2f3uMHchcsRuM HTTP/1.1[0m" 304 -
+2025-03-01 06:43:14,791 INFO 127.0.0.1 - - [01/Mar/2025 06:43:14] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-03-01 06:43:14,850 INFO 127.0.0.1 - - [01/Mar/2025 06:43:14] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-01 06:43:14,851 INFO 127.0.0.1 - - [01/Mar/2025 06:43:14] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-01 06:43:14,920 INFO 127.0.0.1 - - [01/Mar/2025 06:43:14] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=n4vVKQy2f3uMHchcsRuM HTTP/1.1[0m" 304 -
+2025-03-01 06:43:14,936 INFO 127.0.0.1 - - [01/Mar/2025 06:43:14] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -

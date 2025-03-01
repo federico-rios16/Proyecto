@@ -159,27 +159,27 @@ def buscar_usuario_por_nombre(conexion, nombre):
     except Error as error:
         print(f"Error al buscar usuario: {error}")
 
-def listar_usuarios_paginados(conexion, pagina, tamano_pagina):
+def listar_usuarios_paginados(conexion, pagina, cantidad):
     """
     Lista usuarios con paginación.
 
     Args:
         conexion (mysql.connector.connection.MySQLConnection): Conexión a la base de datos.
         pagina (int): Número de la página.
-        tamano_pagina (int): Tamaño de la página.
+        cantidad (int): Tamaño de la página.
 
     Raises:
         mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
     """
     try:
         cursor = conexion.cursor()
-        offset = (pagina - 1) * tamano_pagina
-        cursor.execute("SELECT * FROM usuarios LIMIT %s OFFSET %s", (tamano_pagina, offset))
+        offset = (pagina - 1) * cantidad
+        cursor.execute("SELECT * FROM usuarios LIMIT %s OFFSET %s", (cantidad, offset))
         usuarios = cursor.fetchall()
-        for usuario in usuarios:
-            print(usuario)
+        return usuarios if usuarios else []
     except Error as error:
         print(f"Error al listar usuarios: {error}")
+        return []
 
 def exportar_usuarios_a_csv(conexion, archivo_csv):
     """
