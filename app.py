@@ -7,12 +7,16 @@ app.secret_key = 'supersecretkey'  # Cambia esto por una clave secreta segura
 
 @app.route('/')
 def index():
+    return redirect(url_for('paginated_index', page_num=1))
+
+@app.route('/page/<int:page_num>')
+def paginated_index(page_num):
     conexion = conectar_bd()
     usuarios = []
     if conexion:
-        usuarios = leer_usuarios(conexion)
+        usuarios = listar_usuarios_paginados(conexion, page_num, 10)  # 10 usuarios por página
         cerrar_conexion(conexion)
-    return render_template('index.html', usuarios=usuarios)
+    return render_template('index.html', usuarios=usuarios, page_num=page_num)
 
 @app.route('/add', methods=['POST'])
 def add_user():
@@ -32,7 +36,7 @@ def add_user():
         else:
             flash('Error al agregar usuario', 'danger')
         cerrar_conexion(conexion)
-    return redirect(url_for('index'))
+    return redirect(url_for('paginated_index', page_num=1))
 
 @app.route('/update/<int:id>', methods=['POST'])
 def update_user(id):
@@ -51,7 +55,7 @@ def update_user(id):
         else:
             flash('Error al actualizar usuario', 'danger')
         cerrar_conexion(conexion)
-    return redirect(url_for('index'))
+    return redirect(url_for('paginated_index', page_num=1))
 
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete_user(id):
@@ -62,16 +66,7 @@ def delete_user(id):
         else:
             flash('Error al eliminar usuario', 'danger')
         cerrar_conexion(conexion)
-    return redirect(url_for('index'))
-
-@app.route('/page/<int:page_num>')
-def paginated_index(page_num):
-    conexion = conectar_bd()
-    usuarios = []
-    if conexion:
-        usuarios = listar_usuarios_paginados(conexion, page_num, 10)  # 10 usuarios por página
-        cerrar_conexion(conexion)
-    return render_template('index.html', usuarios=usuarios, page_num=page_num)
+    return redirect(url_for('paginated_index', page_num=1))
 
 if __name__ == '__main__':
     app.run(debug=True)
