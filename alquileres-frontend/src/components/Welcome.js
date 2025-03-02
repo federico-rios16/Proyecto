@@ -1,16 +1,16 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Welcome() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleStudentClick = () => {
-    history.push('/student');
+    navigate('/student');
   };
 
   const handleLandlordClick = () => {
-    history.push('/landlord');
+    navigate('/landlord');
   };
 
   return (
