@@ -18,15 +18,22 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para iniciar sesión
-    // Simulamos un inicio de sesión exitoso
-    const isLoginSuccessful = true; // Cambia esto por la lógica real de inicio de sesión
-
-    if (isLoginSuccessful) {
-      navigate('/dashboard');
-    } else {
-      alert('Error al iniciar sesión');
-    }
+    fetch('http://localhost:5000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Inicio de sesión exitoso') {
+          alert('Inicio de sesión exitoso');
+          navigate('/dashboard');
+        } else {
+          alert('Credenciales incorrectas');
+        }
+      });
   };
 
   return (

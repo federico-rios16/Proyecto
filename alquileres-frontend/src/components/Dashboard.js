@@ -36,7 +36,7 @@ function Dashboard() {
         <Col>
           <h2>Buscar Alquileres</h2>
           <Form>
-            <Form.Row>
+            <Row>
               <Col>
                 <Form.Control placeholder="Precio Mínimo" />
               </Col>
@@ -49,7 +49,7 @@ function Dashboard() {
               <Col>
                 <Button variant="success">Buscar</Button>
               </Col>
-            </Form.Row>
+            </Row>
           </Form>
         </Col>
       </Row>

@@ -1,9 +1,28 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask_cors import CORS
 from conexion_bd import conectar_bd, cerrar_conexion
 from operaciones_usuario import crear_usuario, leer_usuarios, actualizar_usuario, eliminar_usuario, listar_usuarios_paginados
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Cambia esto por una clave secreta segura
+CORS(app)  # Permitir solicitudes CORS desde el frontend
+
+# Simulación de base de datos
+usuarios = []
+
+@app.route('/api/register', methods=['POST'])
+def register():
+    data = request.json
+    usuarios.append(data)
+    return jsonify({"message": "Usuario registrado con éxito"}), 201
+
+@app.route('/api/login', methods=['POST'])
+def login():
+    data = request.json
+    for usuario in usuarios:
+        if usuario['email'] == data['email'] and usuario['contrasena'] == data['contrasena']:
+            return jsonify({"message": "Inicio de sesión exitoso"}), 200
+    return jsonify({"message": "Credenciales incorrectas"}), 401
 
 @app.route('/')
 def index():

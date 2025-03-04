@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ function Register() {
     fecha_nacimiento: '',
     dni: ''
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -22,7 +24,22 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para registrar al usuario
+    fetch('http://localhost:5000/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'Usuario registrado con éxito') {
+          alert('Usuario registrado con éxito');
+          navigate('/login');
+        } else {
+          alert('Error al registrar usuario');
+        }
+      });
   };
 
   return (
