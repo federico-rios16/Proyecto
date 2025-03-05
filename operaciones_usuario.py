@@ -24,25 +24,17 @@ def crear_usuario(conexion, nombre, apellido, email, contrasena, telefono, direc
         mysql.connector.Error: Si ocurre un error al interactuar con la base de datos.
     """
     try:
-        validar_datos_usuario(nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni)
         cursor = conexion.cursor()
-        cursor.execute("SELECT email FROM usuarios WHERE email = %s", (email,))
-        if cursor.fetchone() is None:
-            contrasena_encriptada = encriptar_contrasena(contrasena)
-            cursor.execute(
-                "INSERT INTO usuarios (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-                (nombre, apellido, email, contrasena_encriptada, telefono, direccion, fecha_nacimiento, dni)
-            )
-            conexion.commit()
-            return True
-        else:
-            return False
+        query = """
+        INSERT INTO usuarios (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        cursor.execute(query, (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni))
+        conexion.commit()
+        return True
     except Error as error:
-        print(f"Error al insertar usuario: {error}")
+        print(f"Error al crear usuario: {error}")
         return False
-    except ValueError as ve:
-        log_error(f"Error de validación: {ve}")
-        print(f"Error de validación: {ve}")
 
 def leer_usuarios(conexion):
     """
@@ -82,7 +74,7 @@ def mostrar_tablas(conexion):
     except Error as error:
         print(f"Error al mostrar tablas: {error}")
 
-def actualizar_usuario(conexion, usuario_id, nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni):
+def actualizar_usuario(conexion, id, nombre, apellido, email, telefono, direccion, fecha_nacimiento, dni):
     """
     Actualiza la información de un usuario existente en la base de datos.
 
@@ -92,7 +84,6 @@ def actualizar_usuario(conexion, usuario_id, nombre, apellido, email, contrasena
         nombre (str): Nombre del usuario.
         apellido (str): Apellido del usuario.
         email (str): Email del usuario.
-        contrasena (str): Contraseña del usuario.
         telefono (str): Teléfono del usuario.
         direccion (str): Dirección del usuario.
         fecha_nacimiento (str): Fecha de nacimiento del usuario.
@@ -103,20 +94,19 @@ def actualizar_usuario(conexion, usuario_id, nombre, apellido, email, contrasena
     """
     try:
         cursor = conexion.cursor()
-        sql = """
+        query = """
         UPDATE usuarios
-        SET nombre = %s, apellido = %s, email = %s, contrasena = %s, telefono = %s, direccion = %s, fecha_nacimiento = %s, dni = %s
-        WHERE id = %s
+        SET nombre = %s, apellido = %s, email = %s, telefono = %s, direccion = %s, fecha_nacimiento = %s, dni = %s
+        WHERE id_usuario = %s
         """
-        values = (nombre, apellido, email, contrasena, telefono, direccion, fecha_nacimiento, dni, usuario_id)
-        cursor.execute(sql, values)
+        cursor.execute(query, (nombre, apellido, email, telefono, direccion, fecha_nacimiento, dni, id))
         conexion.commit()
         return True
     except mysql.connector.Error as error:
         print(f"Error al actualizar usuario: {error}")
         return False
 
-def eliminar_usuario(conexion, usuario_id):
+def eliminar_usuario(conexion, id):
     """
     Elimina un usuario de la base de datos.
 
@@ -129,8 +119,8 @@ def eliminar_usuario(conexion, usuario_id):
     """
     try:
         cursor = conexion.cursor()
-        sql = "DELETE FROM usuarios WHERE id = %s"
-        cursor.execute(sql, (usuario_id,))
+        query = "DELETE FROM usuarios WHERE id_usuario = %s"
+        cursor.execute(query, (id,))
         conexion.commit()
         return True
     except mysql.connector.Error as error:
@@ -159,7 +149,7 @@ def buscar_usuario_por_nombre(conexion, nombre):
     except Error as error:
         print(f"Error al buscar usuario: {error}")
 
-def listar_usuarios_paginados(conexion, pagina, cantidad):
+def listar_usuarios_paginados(conexion, page_num, page_size):
     """
     Lista usuarios con paginación.
 
@@ -173,12 +163,13 @@ def listar_usuarios_paginados(conexion, pagina, cantidad):
     """
     try:
         cursor = conexion.cursor()
-        offset = (pagina - 1) * cantidad
-        cursor.execute("SELECT * FROM usuarios LIMIT %s OFFSET %s", (cantidad, offset))
+        offset = (page_num - 1) * page_size
+        query = "SELECT * FROM usuarios LIMIT %s OFFSET %s"
+        cursor.execute(query, (page_size, offset))
         usuarios = cursor.fetchall()
-        return usuarios if usuarios else []
+        return usuarios
     except Error as error:
-        print(f"Error al listar usuarios: {error}")
+        print(f"Error al listar usuarios paginados: {error}")
         return []
 
 def exportar_usuarios_a_csv(conexion, archivo_csv):

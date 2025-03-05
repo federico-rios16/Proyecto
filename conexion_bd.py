@@ -1,8 +1,10 @@
 import mysql.connector
 from mysql.connector import Error
 
+# Función para conectar a la base de datos
 def conectar_bd():
     try:
+        # Establecer la conexión a la base de datos
         conexion = mysql.connector.connect(
             host="localhost",
             user="root",  # Asegúrate de que este usuario tenga permisos
@@ -16,6 +18,7 @@ def conectar_bd():
         print(f"Error al conectar a la base de datos: {error}")
         return None
 
+# Función para cerrar la conexión a la base de datos
 def cerrar_conexion(conexion):
     try:
         if conexion.is_connected():
@@ -24,6 +27,7 @@ def cerrar_conexion(conexion):
     except Error as error:
         print(f"Error al cerrar la conexión a la base de datos: {error}")
 
+# Código de prueba para verificar la conexión a la base de datos
 if __name__ == "__main__":
     conexion = conectar_bd()
     if conexion:

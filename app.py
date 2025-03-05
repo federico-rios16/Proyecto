@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 from flask_cors import CORS
 from conexion_bd import conectar_bd, cerrar_conexion
 from operaciones_usuario import crear_usuario, leer_usuarios, actualizar_usuario, eliminar_usuario, listar_usuarios_paginados
+import re
 
 # Crear una instancia de la aplicación Flask
 app = Flask(__name__)
@@ -15,10 +16,23 @@ CORS(app)
 # Simulación de base de datos (lista de usuarios en memoria)
 usuarios = []
 
+# Función para validar datos de usuario
+def validar_datos_usuario(data):
+    if not data.get('nombre') or not data.get('apellido'):
+        return False, "Nombre y apellido son obligatorios."
+    if not data.get('email') or not re.match(r"[^@]+@[^@]+\.[^@]+", data['email']):
+        return False, "Correo electrónico no válido."
+    if not data.get('contrasena') or len(data['contrasena']) < 6:
+        return False, "La contraseña debe tener al menos 6 caracteres."
+    return True, ""
+
 # Ruta para registrar un nuevo usuario
 @app.route('/api/register', methods=['POST'])
 def register():
     data = request.json  # Obtener los datos del usuario desde la solicitud JSON
+    valido, mensaje = validar_datos_usuario(data)
+    if not valido:
+        return jsonify({"message": mensaje}), 400  # Devolver un mensaje de error si los datos no son válidos
     usuarios.append(data)  # Agregar el nuevo usuario a la lista de usuarios
     return jsonify({"message": "Usuario registrado con éxito"}), 201  # Devolver una respuesta JSON con un mensaje de éxito
 
@@ -59,6 +73,22 @@ def add_user():
     fecha_nacimiento = request.form['fecha_nacimiento']
     dni = request.form['dni']
     
+    # Validar los datos del formulario
+    data = {
+        "nombre": nombre,
+        "apellido": apellido,
+        "email": email,
+        "contrasena": contrasena,
+        "telefono": telefono,
+        "direccion": direccion,
+        "fecha_nacimiento": fecha_nacimiento,
+        "dni": dni
+    }
+    valido, mensaje = validar_datos_usuario(data)
+    if not valido:
+        flash(mensaje, 'danger')  # Mostrar un mensaje de error si los datos no son válidos
+        return redirect(url_for('paginated_index', page_num=1))  # Redirigir a la primera página de usuarios
+
     conexion = conectar_bd()  # Conectar a la base de datos
     if conexion:
         # Intentar crear un nuevo usuario en la base de datos
@@ -81,6 +111,22 @@ def update_user(id):
     fecha_nacimiento = request.form['fecha_nacimiento']
     dni = request.form['dni']
     
+    # Validar los datos del formulario
+    data = {
+        "nombre": nombre,
+        "apellido": apellido,
+        "email": email,
+        "contrasena": request.form.get('contrasena', ''),  # La contraseña puede no estar presente en la actualización
+        "telefono": telefono,
+        "direccion": direccion,
+        "fecha_nacimiento": fecha_nacimiento,
+        "dni": dni
+    }
+    valido, mensaje = validar_datos_usuario(data)
+    if not valido:
+        flash(mensaje, 'danger')  # Mostrar un mensaje de error si los datos no son válidos
+        return redirect(url_for('paginated_index', page_num=1))  # Redirigir a la primera página de usuarios
+
     conexion = conectar_bd()  # Conectar a la base de datos
     if conexion:
         # Intentar actualizar el usuario en la base de datos
