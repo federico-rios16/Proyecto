@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_cors import CORS
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from conexion_bd import conectar_bd, cerrar_conexion
 from operaciones_usuario import crear_usuario, leer_usuarios, actualizar_usuario, eliminar_usuario, listar_usuarios_paginados
 import re
@@ -13,8 +14,28 @@ app.secret_key = 'supersecretkey'  # Cambia esto por una clave secreta segura
 # Permitir solicitudes CORS desde el frontend
 CORS(app)
 
+# Configurar Flask-Login
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
 # Simulación de base de datos (lista de usuarios en memoria)
 usuarios = []
+
+# Clase User para Flask-Login
+class User(UserMixin):
+    def __init__(self, id, email, contrasena):
+        self.id = id
+        self.email = email
+        self.contrasena = contrasena
+
+# Cargar usuario
+@login_manager.user_loader
+def load_user(user_id):
+    for usuario in usuarios:
+        if usuario['id'] == int(user_id):
+            return User(usuario['id'], usuario['email'], usuario['contrasena'])
+    return None
 
 # Función para validar datos de usuario
 def validar_datos_usuario(data):
@@ -45,6 +66,7 @@ def register():
     valido, mensaje = validar_datos_usuario(data)
     if not valido:
         return jsonify({"message": mensaje}), 400  # Devolver un mensaje de error si los datos no son válidos
+    data['id'] = len(usuarios) + 1  # Asignar un ID único al usuario
     usuarios.append(data)  # Agregar el nuevo usuario a la lista de usuarios
     return jsonify({"message": "Usuario registrado con éxito"}), 201  # Devolver una respuesta JSON con un mensaje de éxito
 
@@ -59,8 +81,22 @@ def login():
     data = request.json  # Obtener los datos de inicio de sesión desde la solicitud JSON
     for usuario in usuarios:  # Recorrer la lista de usuarios
         if usuario['email'] == data['email'] and usuario['contrasena'] == data['contrasena']:  # Verificar las credenciales
+            user = User(usuario['id'], usuario['email'], usuario['contrasena'])
+            login_user(user)  # Iniciar sesión del usuario
             return jsonify({"message": "Inicio de sesión exitoso"}), 200  # Devolver una respuesta JSON con un mensaje de éxito
     return jsonify({"message": "Credenciales incorrectas"}), 401  # Devolver una respuesta JSON con un mensaje de error
+
+# Ruta para cerrar sesión
+@app.route('/api/logout', methods=['POST'])
+@login_required
+def logout():
+    """
+    Cierra la sesión del usuario.
+    Returns:
+        Response: Redirección a la página de inicio.
+    """
+    logout_user()  # Cerrar sesión del usuario
+    return jsonify({"message": "Sesión cerrada exitosamente"}), 200  # Devolver una respuesta JSON con un mensaje de éxito
 
 # Ruta principal que redirige a la página paginada de usuarios
 @app.route('/')
@@ -74,6 +110,7 @@ def index():
 
 # Ruta para mostrar una página paginada de usuarios
 @app.route('/page/<int:page_num>')
+@login_required
 def paginated_index(page_num):
     """
     Muestra una página paginada de usuarios.
@@ -91,6 +128,7 @@ def paginated_index(page_num):
 
 # Ruta para agregar un nuevo usuario
 @app.route('/add', methods=['POST'])
+@login_required
 def add_user():
     """
     Agrega un nuevo usuario.
@@ -135,6 +173,7 @@ def add_user():
 
 # Ruta para actualizar un usuario existente
 @app.route('/update/<int:id>', methods=['POST'])
+@login_required
 def update_user(id):
     """
     Actualiza un usuario existente.
@@ -180,6 +219,7 @@ def update_user(id):
 
 # Ruta para eliminar un usuario existente
 @app.route('/delete/<int:id>', methods=['POST'])
+@login_required
 def delete_user(id):
     """
     Elimina un usuario existente.
