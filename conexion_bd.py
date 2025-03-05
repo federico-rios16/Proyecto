@@ -3,6 +3,11 @@ from mysql.connector import Error
 
 # Función para conectar a la base de datos
 def conectar_bd():
+    """
+    Establece la conexión a la base de datos.
+    Returns:
+        conexion: Objeto de conexión a la base de datos o None si hay un error.
+    """
     try:
         # Establecer la conexión a la base de datos
         conexion = mysql.connector.connect(
@@ -20,6 +25,11 @@ def conectar_bd():
 
 # Función para cerrar la conexión a la base de datos
 def cerrar_conexion(conexion):
+    """
+    Cierra la conexión a la base de datos.
+    Args:
+        conexion: Objeto de conexión a la base de datos.
+    """
     try:
         if conexion.is_connected():
             conexion.close()

@@ -18,6 +18,13 @@ usuarios = []
 
 # Función para validar datos de usuario
 def validar_datos_usuario(data):
+    """
+    Valida los datos del usuario.
+    Args:
+        data (dict): Diccionario con los datos del usuario.
+    Returns:
+        tuple: (bool, str) Indica si los datos son válidos y un mensaje de error si no lo son.
+    """
     if not data.get('nombre') or not data.get('apellido'):
         return False, "Nombre y apellido son obligatorios."
     if not data.get('email') or not re.match(r"[^@]+@[^@]+\.[^@]+", data['email']):
@@ -29,6 +36,11 @@ def validar_datos_usuario(data):
 # Ruta para registrar un nuevo usuario
 @app.route('/api/register', methods=['POST'])
 def register():
+    """
+    Registra un nuevo usuario.
+    Returns:
+        Response: Respuesta JSON con un mensaje de éxito o error.
+    """
     data = request.json  # Obtener los datos del usuario desde la solicitud JSON
     valido, mensaje = validar_datos_usuario(data)
     if not valido:
@@ -39,6 +51,11 @@ def register():
 # Ruta para iniciar sesión
 @app.route('/api/login', methods=['POST'])
 def login():
+    """
+    Inicia sesión de un usuario.
+    Returns:
+        Response: Respuesta JSON con un mensaje de éxito o error.
+    """
     data = request.json  # Obtener los datos de inicio de sesión desde la solicitud JSON
     for usuario in usuarios:  # Recorrer la lista de usuarios
         if usuario['email'] == data['email'] and usuario['contrasena'] == data['contrasena']:  # Verificar las credenciales
@@ -48,11 +65,23 @@ def login():
 # Ruta principal que redirige a la página paginada de usuarios
 @app.route('/')
 def index():
+    """
+    Redirige a la primera página de usuarios.
+    Returns:
+        Response: Redirección a la primera página de usuarios.
+    """
     return redirect(url_for('paginated_index', page_num=1))  # Redirigir a la primera página de usuarios
 
 # Ruta para mostrar una página paginada de usuarios
 @app.route('/page/<int:page_num>')
 def paginated_index(page_num):
+    """
+    Muestra una página paginada de usuarios.
+    Args:
+        page_num (int): Número de la página.
+    Returns:
+        Response: Renderiza la plantilla HTML con la lista de usuarios y el número de página.
+    """
     conexion = conectar_bd()  # Conectar a la base de datos
     usuarios = []
     if conexion:
@@ -63,6 +92,11 @@ def paginated_index(page_num):
 # Ruta para agregar un nuevo usuario
 @app.route('/add', methods=['POST'])
 def add_user():
+    """
+    Agrega un nuevo usuario.
+    Returns:
+        Response: Redirección a la primera página de usuarios.
+    """
     # Obtener los datos del formulario
     nombre = request.form['nombre']
     apellido = request.form['apellido']
@@ -102,6 +136,13 @@ def add_user():
 # Ruta para actualizar un usuario existente
 @app.route('/update/<int:id>', methods=['POST'])
 def update_user(id):
+    """
+    Actualiza un usuario existente.
+    Args:
+        id (int): ID del usuario.
+    Returns:
+        Response: Redirección a la primera página de usuarios.
+    """
     # Obtener los datos del formulario
     nombre = request.form['nombre']
     apellido = request.form['apellido']
@@ -140,6 +181,13 @@ def update_user(id):
 # Ruta para eliminar un usuario existente
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete_user(id):
+    """
+    Elimina un usuario existente.
+    Args:
+        id (int): ID del usuario.
+    Returns:
+        Response: Redirección a la primera página de usuarios.
+    """
     conexion = conectar_bd()  # Conectar a la base de datos
     if conexion:
         # Intentar eliminar el usuario de la base de datos
