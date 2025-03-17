@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
@@ -13,6 +13,8 @@ function Register() {
     fecha_nacimiento: '',
     dni: ''
   });
+  const [message, setMessage] = useState('');
+  const [variant, setVariant] = useState('success');
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -34,10 +36,14 @@ function Register() {
       .then(response => response.json())
       .then(data => {
         if (data.message === 'Usuario registrado con éxito') {
-          alert('Usuario registrado con éxito');
-          navigate('/login');
+          setVariant('success');
+          setMessage('Usuario registrado con éxito');
+          setTimeout(() => {
+            navigate('/login');
+          }, 2000);
         } else {
-          alert('Error al registrar usuario');
+          setVariant('danger');
+          setMessage('Error al registrar usuario');
         }
       });
   };
@@ -45,6 +51,7 @@ function Register() {
   return (
     <Container className="mt-5">
       <h1>Registro de Estudiante</h1>
+      {message && <Alert variant={variant}>{message}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formNombre">
           <Form.Label>Nombre</Form.Label>

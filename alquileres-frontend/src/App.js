@@ -7,10 +7,12 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Support from './components/Support';
 import Wallet from './components/Wallet';
+import Navigation from './components/Navbar';
 
 function App() {
   return (
     <Router>
+      <Navigation />
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/student" element={<Student />} />
