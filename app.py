@@ -98,19 +98,18 @@ def logout():
     logout_user()  # Cerrar sesión del usuario
     return jsonify({"message": "Sesión cerrada exitosamente"}), 200  # Devolver una respuesta JSON con un mensaje de éxito
 
-# Ruta principal que redirige a la página paginada de usuarios
+# Ruta principal que renderiza el archivo index.html como la página principal
 @app.route('/')
 def index():
     """
-    Redirige a la primera página de usuarios.
+    Renderiza el archivo index.html como la página principal.
     Returns:
-        Response: Redirección a la primera página de usuarios.
+        Response: Renderiza la plantilla index.html.
     """
-    return redirect(url_for('paginated_index', page_num=1))  # Redirigir a la primera página de usuarios
+    return render_template('index.html')  # Renderiza tu archivo index.html directamente
 
 # Ruta para mostrar una página paginada de usuarios
 @app.route('/page/<int:page_num>')
-@login_required
 def paginated_index(page_num):
     """
     Muestra una página paginada de usuarios.

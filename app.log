@@ -416,3 +416,115 @@
 2025-03-13 06:29:01,217 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 2025-03-13 06:29:01,217 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 03:58:26,202 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 03:58:26,203 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 03:58:26,207 INFO  * Restarting with stat
+2025-03-29 03:58:27,739 WARNING  * Debugger is active!
+2025-03-29 03:58:27,747 INFO  * Debugger PIN: 108-787-676
+2025-03-29 04:00:21,758 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:00:21,759 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:00:21,762 INFO  * Restarting with stat
+2025-03-29 04:00:22,545 WARNING  * Debugger is active!
+2025-03-29 04:00:22,550 INFO  * Debugger PIN: 747-666-032
+2025-03-29 04:02:54,348 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:02:54,348 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:08:52,105 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:08:52,105 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:10:17,975 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:10:17,975 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:10:17,978 INFO  * Restarting with stat
+2025-03-29 04:10:18,756 WARNING  * Debugger is active!
+2025-03-29 04:10:18,762 INFO  * Debugger PIN: 108-787-676
+2025-03-29 04:10:57,732 INFO 127.0.0.1 - - [29/Mar/2025 04:10:57] "[32mGET / HTTP/1.1[0m" 302 -
+2025-03-29 04:10:58,011 INFO 127.0.0.1 - - [29/Mar/2025 04:10:58] "[32mGET /page/1 HTTP/1.1[0m" 302 -
+2025-03-29 04:10:58,049 INFO 127.0.0.1 - - [29/Mar/2025 04:10:58] "[31m[1mGET /api/login?next=/page/1 HTTP/1.1[0m" 405 -
+2025-03-29 04:10:58,329 INFO 127.0.0.1 - - [29/Mar/2025 04:10:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-29 04:20:14,597 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:20:14,597 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:20:14,600 INFO  * Restarting with stat
+2025-03-29 04:20:15,457 WARNING  * Debugger is active!
+2025-03-29 04:20:15,463 INFO  * Debugger PIN: 108-787-676
+2025-03-29 04:21:03,432 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:21:03,432 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:21:03,438 INFO  * Restarting with stat
+2025-03-29 04:21:04,541 WARNING  * Debugger is active!
+2025-03-29 04:21:04,550 INFO  * Debugger PIN: 108-787-676
+2025-03-29 04:21:23,581 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:21:23,581 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:22:22,085 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:22:22,085 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:22:22,088 INFO  * Restarting with stat
+2025-03-29 04:22:24,370 WARNING  * Debugger is active!
+2025-03-29 04:22:24,376 INFO  * Debugger PIN: 108-787-676
+2025-03-29 04:23:29,153 ERROR 127.0.0.1 - - [29/Mar/2025 04:23:29] code 400, message Bad request version ('Ãh\x92\x89³µ\x8c\x8b\x91úÁ1')
+2025-03-29 04:23:29,153 INFO 127.0.0.1 - - [29/Mar/2025 04:23:29] "[31m[1m\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03º-õÌ\x9aIY\x13\x0cL\\~ÆÞ\\Ø\x17\x86:\x83ø\x0cM }g\x05¡è¤\x1eü 2\x8eôeRYð+\x95u`·\x08 ¤V\x95\x0e\x1b¥ô\x12\x00¢vOx?Lõ\x84´\x00 ºº\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06Súú\x00\x00\x00#\x00\x00\x00\x10\x00\x0e\x00\x0c\x02h2\x08http/1.1ÿ\x01\x00\x01\x00\x003\x04ï\x04íêê\x00\x01\x00\x11ì\x04À@[­+« $é7\x94Õ\x05|Q\x04¬\x08KAÔ\x15/á¥\x0c\x94wÜ@\x1c\x12Ë»Ï*\x1dù0¸¯¤\x1cÃh\x92\x89³µ\x8c\x8b\x91úÁ1[0m" 400 -
+2025-03-29 04:23:29,194 ERROR 127.0.0.1 - - [29/Mar/2025 04:23:29] code 400, message Bad request version ('ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063::\x00\x00\x00\x12\x00\x00\x00')
+2025-03-29 04:23:29,194 INFO 127.0.0.1 - - [29/Mar/2025 04:23:29] "[31m[1m\x16\x03\x01\x06 \x01\x00\x06\x9c\x03\x03\x05,¦¡Z\x95YøªÜNoÙ#Ç\x9c\x83¥ª\x08\x14\x0c)\x88*\x1a; ûÞ,` ="`í\x17bâò \x0bÓ^Üqdê\x01ïË\x05=0ÝÙó\x88ã\x0e7â\x81?\x00 ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063::\x00\x00\x00\x12\x00\x00\x00[0m" 400 -
+2025-03-29 04:23:41,998 INFO 127.0.0.1 - - [29/Mar/2025 04:23:41] "[32mGET / HTTP/1.1[0m" 302 -
+2025-03-29 04:23:42,259 INFO 127.0.0.1 - - [29/Mar/2025 04:23:42] "[32mGET /page/1 HTTP/1.1[0m" 302 -
+2025-03-29 04:23:42,322 INFO 127.0.0.1 - - [29/Mar/2025 04:23:42] "[31m[1mGET /api/login?next=/page/1 HTTP/1.1[0m" 405 -
+2025-03-29 04:24:25,761 ERROR 127.0.0.1 - - [29/Mar/2025 04:24:25] code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ÚÚ\x00\x00\x003\x04ï\x04í')
+2025-03-29 04:24:25,761 INFO 127.0.0.1 - - [29/Mar/2025 04:24:25] "[31m[1m\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03' µ\x84Ì\x18±ªò#\x95\x09õ±<hÛOþ¸á£\x92s\x1dº· â\x0e\x983 z±ßl\x80\x89&È~ö\x93wÿ$Iºy\x11\x03\x8a\x81+\x0czJòÌj]dPX\x00 ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93ÚÚ\x00\x00\x003\x04ï\x04í[0m" 400 -
+2025-03-29 04:24:25,764 ERROR 127.0.0.1 - - [29/Mar/2025 04:24:25] code 400, message Bad request version ('cHÛÇ6!Kb\x9bÚGÚ(xu3\x82+\x82ª\x9bB\x17\x83Ùºni\x0e\x8f\x91')
+2025-03-29 04:24:25,764 INFO 127.0.0.1 - - [29/Mar/2025 04:24:25] "[31m[1m\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03®Î3d^ \x8c\x19ÙC\x0e\x086\x15ÕY\x87\x00ßo7\x0b\x0bôÚFO-\x84\x14i© \x94À2ëN\x12ÒZz¤î0§IáL¬Ì\x11e|?,N¬Ù\x9c\x11)ÏnÄ\x00 jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93úú\x00\x00þ\x0d\x01\x1a\x00\x00\x01\x00\x01ú\x00 ¥É\x1fâ³]\x1a\x07L\x06ÁGôÜ=k!ð?\x86I\x07´;¯\x09\x0cô\x88S\x81\x17\x00ð\x00Î\x17>\x07ËÔçG¦¦ü}\x16£\x8dú\x80à²m\x93ðu\x14å~[)\x9f\x7f9ÆJò\x13\x9b´!\x9eØ²ûÙìX Ì\x96\x97Éÿ\x1aÌWHæ?\x1ah\x9eÇ\x89hz}þGìk\x9c¦\x95Öx\x06\x8f©r\x91Á9%ù\x9c5¯_0\x92z\x8b#Ê\x12¬aÄH\x01¸ë\x00Ïðýÿ¨wgm!=¯¡»p\x91dW\x85\x8d|Û¼ \x8a?ñçHñÜÅ\x1f\x87/\x8dÓö\x04ð\x87;3\x09æº\x95\x12[u?Î\x1a\x9cá­ËHéUs\x0b ~\x1a\x05:Ãp«àÖ\x82¢\x83|Ì\x02 Ë\x00-\x17\x99¬\x93[\x054\x08\x07E5Ê³©?µVÔ«º\x87ã#\x019\x9aþ »VyYY%\x05\x83ôb\x0eÀ½å.Îáû\x0bþá\x9bü\x0dÙ¼&8\x00\x0b\x00\x02\x01\x00\x003\x04ï\x04í\x8a\x8a\x00\x01\x00\x11ì\x04À\x1fJI cHÛÇ6!Kb\x9bÚGÚ(xu3\x82+\x82ª\x9bB\x17\x83Ùºni\x0e\x8f\x91[0m" 400 -
+2025-03-29 04:28:55,648 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 04:28:55,649 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 04:28:55,652 INFO  * Restarting with stat
+2025-03-29 04:28:56,437 WARNING  * Debugger is active!
+2025-03-29 04:28:56,443 INFO  * Debugger PIN: 108-787-676
+2025-03-29 04:29:09,838 INFO 127.0.0.1 - - [29/Mar/2025 04:29:09] "GET /static/css/styles.css HTTP/1.1" 200 -
+2025-03-29 05:03:50,666 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 05:03:50,667 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 05:03:50,672 INFO  * Restarting with stat
+2025-03-29 05:03:51,543 WARNING  * Debugger is active!
+2025-03-29 05:03:51,552 INFO  * Debugger PIN: 108-787-676
+2025-03-29 05:10:09,891 ERROR 127.0.0.1 - - [29/Mar/2025 05:10:09] code 400, message Bad request version ('ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063::\x00\x00\x00')
+2025-03-29 05:10:09,899 INFO 127.0.0.1 - - [29/Mar/2025 05:10:09] "[31m[1m\x16\x03\x01\x06 \x01\x00\x06\x9c\x03\x03¤\x808&\x1b\x93élÔ\x95ï\x1e\x16\x016ã<²ê\x00Ø¼\x84¢¨\x8dß\x14µÞVp \x90\x00\x03×jóî\x83nÚ/*¶p¢oC\\rd½}z\x8bZ¶>ú¯I5Ø\x00 ÚÚ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x063::\x00\x00\x00[0m" 400 -
+2025-03-29 05:10:09,913 ERROR 127.0.0.1 - - [29/Mar/2025 05:10:09] code 400, message Bad request version ('\x9bw¾û4µ')
+2025-03-29 05:10:09,916 INFO 127.0.0.1 - - [29/Mar/2025 05:10:09] "[31m[1m\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x036Ò\x1b_¹7°~'+}Ý\x82\x87\x85Ã\x16\x1bR\x91òÐ\x83>I\x03ÊïI:î_ fßMpó\x18çßë\x06\x88\x0f\x7f\x1bÅY­\x94²B@ºYNlj¦¥\x9aîx\x9e\x00 jj\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06s\x9a\x9a\x00\x00ÿ\x01\x00\x01\x00\x00#\x00\x00\x00-\x00\x02\x01\x01\x00+\x00\x07\x06\x1a\x1a\x03\x04\x03\x03\x00\x0b\x00\x02\x01\x00þ\x0d\x00ú\x00\x00\x01\x00\x01î\x00 çîÃÏ:kGë\x06\x1aï^4Ñ>Æ\x1eZ`F\x1dR37Ëø\x7f\x0d\x1dp\x08>\x00Ðy\x1a_Ã|ÏO¬\x89Ö¥¤ç\x91zµ±T2ýHÚY\x12RëD?Ç\x01A\x1b\x06\x0d­%Õ\x0e\x8cCRX\x1c\x88ã4þ\x87\x93'c³\x0d\x08\x0f:a7ØwTQ\x16áS´j\x9b*#£ß\x9eg\x90µ?\x8d¿é\x1a\x13È'QíöI*Ì×\x84ª×G¹\x07"\x04$\x00\x83H°&Nt\x85\x1d\x17Ô\x11¾Ñãl°`:í¶Íñó\x9b\x98¥¦\x0f\x8ak\x9ffkÁÚl¨\x0cíg1\x11àðcïE4\x0d\x83\x05Èô¦°üÆ¡¦~fÄ¯\x17>Jú³kf¨hg\x0f\x15\x88:ª\x93ã¸JY4\x04\x98\x8c\x9bE»@Ø\x1fûÔ\x0ck?ñí#Îç]Iå\x19Di\x00\x05\x00\x03\x02h2\x00\x05\x00\x05\x01\x00\x00\x00\x00\x00\x1b\x00\x03\x02\x00\x02\x00\x12\x00\x00\x00\x17\x00\x00\x00\x0d\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x003\x04ï\x04íºº\x00\x01\x00\x11ì\x04ÀnÆ["{\x1c\x0cX\x99üºT\x84c­\x97ù[\x8aúk\x97 %ÿ÷$\x86¶²ÝÀwð`zÖé¯\x1d"´>Ò\x19\x02xvù\x81\x00q\\©ù!Ëª\x80;ëb+\x91[?q!Çd\x1c\x87X\x9b\x08[ôBÀb¿îÊX­ÙªÖtW»:*\x11©\x01½ü\x95Ýk\x0dO7AèÚ¡x\x86\x86Ä\x84\x87\x80@\x19\x96\x1cA){\x04\x9eë®³,B_â\x98¯ÕÀ`K\x8c\x07KµVTo¿I°8é©Þõ\x1e\x9bw¾û4µ[0m" 400 -
+2025-03-29 05:10:18,468 INFO 127.0.0.1 - - [29/Mar/2025 05:10:18] "[32mGET / HTTP/1.1[0m" 302 -
+2025-03-29 05:10:18,507 INFO 127.0.0.1 - - [29/Mar/2025 05:10:18] "[32mGET /page/1 HTTP/1.1[0m" 302 -
+2025-03-29 05:10:18,522 INFO 127.0.0.1 - - [29/Mar/2025 05:10:18] "[31m[1mGET /api/login?next=/page/1 HTTP/1.1[0m" 405 -
+2025-03-29 05:10:18,689 INFO 127.0.0.1 - - [29/Mar/2025 05:10:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-29 05:21:34,077 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 05:21:34,077 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 05:21:34,080 INFO  * Restarting with stat
+2025-03-29 05:21:34,938 WARNING  * Debugger is active!
+2025-03-29 05:21:34,944 INFO  * Debugger PIN: 108-787-676
+2025-03-29 05:21:51,179 INFO 127.0.0.1 - - [29/Mar/2025 05:21:51] "[32mGET / HTTP/1.1[0m" 302 -
+2025-03-29 05:21:51,444 INFO 127.0.0.1 - - [29/Mar/2025 05:21:51] "[32mGET /page/1 HTTP/1.1[0m" 302 -
+2025-03-29 05:21:51,494 INFO 127.0.0.1 - - [29/Mar/2025 05:21:51] "[31m[1mGET /api/login?next=/page/1 HTTP/1.1[0m" 405 -
+2025-03-29 05:21:51,762 INFO 127.0.0.1 - - [29/Mar/2025 05:21:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-29 05:22:19,571 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-29 05:22:19,812 INFO  * Restarting with stat
+2025-03-29 05:22:21,145 WARNING  * Debugger is active!
+2025-03-29 05:22:21,151 INFO  * Debugger PIN: 108-787-676
+2025-03-29 05:22:27,884 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-29 05:22:27,884 INFO [33mPress CTRL+C to quit[0m
+2025-03-29 05:22:27,887 INFO  * Restarting with stat
+2025-03-29 05:22:28,651 WARNING  * Debugger is active!
+2025-03-29 05:22:28,657 INFO  * Debugger PIN: 108-787-676
+2025-03-29 05:26:04,147 INFO  * Detected change in 'D:\\Proyecto\\app.py', reloading
+2025-03-29 05:26:04,243 INFO  * Detected change in 'd:\\Proyecto\\app.py', reloading
+2025-03-29 05:26:04,280 INFO  * Restarting with stat
+2025-03-29 05:26:04,446 INFO  * Restarting with stat
+2025-03-29 05:26:09,017 WARNING  * Debugger is active!
+2025-03-29 05:26:09,024 INFO  * Debugger PIN: 108-787-676
+2025-03-29 05:26:09,330 WARNING  * Debugger is active!
+2025-03-29 05:26:09,336 INFO  * Debugger PIN: 108-787-676
+2025-03-29 05:27:28,498 INFO 127.0.0.1 - - [29/Mar/2025 05:27:28] "GET / HTTP/1.1" 200 -
+2025-03-29 05:27:28,889 INFO 127.0.0.1 - - [29/Mar/2025 05:27:28] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-03-29 05:27:28,923 INFO 127.0.0.1 - - [29/Mar/2025 05:27:28] "GET /static/js/script.js HTTP/1.1" 200 -
