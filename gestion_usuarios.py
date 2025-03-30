@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, flash, redirect, url_for
 from flask_login import login_user, logout_user, login_required, current_user
-from your_user_model_module import User  # Replace 'your_user_model_module' with the actual module name
+from modelo_usuario import User  # Ensure 'modelo_usuario.py' is in the same directory as this file
 from conexion_bd import conectar_bd, cerrar_conexion
 from operaciones_usuario import crear_usuario, leer_usuarios, actualizar_usuario, eliminar_usuario
 import re
