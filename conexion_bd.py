@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
+import json
 
 # Función para conectar a la base de datos
 def conectar_bd():
@@ -9,12 +10,17 @@ def conectar_bd():
         conexion: Objeto de conexión a la base de datos o None si hay un error.
     """
     try:
+        # Leer la configuración de la base de datos desde un archivo config.json
+        with open('config.json') as f:
+            config = json.load(f)
+        database_config = config['database']
+
         # Establecer la conexión a la base de datos
         conexion = mysql.connector.connect(
-            host="localhost",
-            user="root",  # Asegúrate de que este usuario tenga permisos
-            password="1234",  # Asegúrate de que esta contraseña sea correcta
-            database="alquileres"
+            host=database_config['host'],
+            user=database_config['user'],
+            password=database_config['password'],
+            database=database_config['database']
         )
         if conexion.is_connected():
             print("Conexión a la base de datos exitosa")

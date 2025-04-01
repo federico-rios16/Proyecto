@@ -4,6 +4,29 @@ from modelo_usuario import User  # Ensure 'modelo_usuario.py' is in the same dir
 from conexion_bd import conectar_bd, cerrar_conexion
 from operaciones_usuario import crear_usuario, leer_usuarios, actualizar_usuario, eliminar_usuario
 import re
+from flask import url_for, redirect
+from gestion_usuarios import usuarios
+
+# Crear un Blueprint para la gestión de usuarios
+@usuarios_bp.route('/usuarios')
+def usuarios():
+    return redirect(url_for('usuarios'))
+
+@usuarios_bp.route('/usuarios/<int:user_id>')
+def usuario(user_id):
+    return redirect(url_for('usuario', user_id=user_id))
+
+@usuarios_bp.route('/usuarios/crear', methods=['GET', 'POST'])
+def crear_usuario():
+    return redirect(url_for('crear_usuario'))
+
+@usuarios_bp.route('/usuarios/editar/<int:user_id>', methods=['GET', 'POST'])
+def editar_usuario(user_id):
+    return redirect(url_for('editar_usuario', user_id=user_id))
+
+@usuarios_bp.route('/usuarios/eliminar/<int:user_id>')
+def eliminar_usuario(user_id):
+    return redirect(url_for('eliminar_usuario', user_id=user_id))
 
 # Crear un Blueprint para la gestión de usuarios
 usuarios_bp = Blueprint('usuarios', __name__)

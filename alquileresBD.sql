@@ -71,16 +71,3 @@ INSERT INTO propiedades (titulo, precio, disponible) VALUES (
 -- Consultas de ejemplo
 SELECT * FROM usuarios;
 SELECT titulo, precio FROM propiedades WHERE disponible = true;
-
-
-
-
-
-
-
-
-
-
-
-
-
