@@ -67,6 +67,34 @@ class TestApp(unittest.TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.json['message'], "Credenciales incorrectas")
 
+    def test_login_post_invalid(self):
+        # Prueba para un inicio de sesión con credenciales inválidas
+        response = self.app.post('/login', data={
+            'correo_electronico': 'usuario@invalido.com',
+            'contraseña': 'incorrecta'
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('Credenciales inválidas'.encode('utf-8'), response.data)
+
+    def test_login_usuario(self):
+        # Simular el login con credenciales correctas
+        response = self.app.post('/api/login', json={
+            'email': 'juan.perez@example.com',
+            'contrasena': '123456'
+        })
+        # Verificar que el login sea exitoso
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json['message'], 'Inicio de sesión exitoso')
+
+        # Simular el login con credenciales incorrectas
+        response = self.app.post('/api/login', json={
+            'email': 'juan.perez@example.com',
+            'contrasena': 'incorrecta'
+        })
+        # Verificar que el login falle con credenciales incorrectas
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json['message'], 'Credenciales incorrectas')
+
     def test_logout(self):
         # Prueba de cierre de sesión de usuario
         data = {
@@ -88,6 +116,22 @@ class TestApp(unittest.TestCase):
         # Prueba de listado paginado de usuarios
         response = self.app.get('/page/1')
         self.assertEqual(response.status_code, 302)  # Redirección a la página de inicio de sesión
+
+    def test_creacion_usuario(self):
+        # Simular la creación de un usuario
+        response = self.app.post('/api/register', json={
+            'nombre': 'Juan',
+            'apellido': 'Pérez',
+            'email': 'juan.perez@example.com',
+            'contrasena': '123456',
+            'telefono': '123456789',
+            'direccion': 'Calle Falsa 123',
+            'fecha_nacimiento': '1990-01-01',
+            'dni': '12345678'
+        })
+        # Verificar que la respuesta sea exitosa
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.json['message'], 'Usuario registrado con éxito')
 
 if __name__ == '__main__':
     unittest.main()

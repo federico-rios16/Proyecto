@@ -17,12 +17,28 @@ function Register() {
   const [variant, setVariant] = useState('success');
   const navigate = useNavigate();
 
+
+  const [nombre, setNombre] = useState('');
+  const [errorNombre, setErrorNombre] = useState(null);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
+
+// Validación del campo nombre
+const handleChangeNombre = (e) => {
+  setNombre(e.target.value);
+  if (e.target.value.length < 3 || e.target.value.length > 20) {
+    setErrorNombre('El nombre debe tener entre 3 y 20 caracteres');
+  } else if (!/^[a-zA-Z0-9]+$/.test(e.target.value)) {
+    setErrorNombre('El nombre solo puede contener letras y números');
+  } else {
+    setErrorNombre(null);
+  }
+}
 
   const handleSubmit = (e) => {
     e.preventDefault();

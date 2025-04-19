@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard';
 import Support from './components/Support';
 import Wallet from './components/Wallet';
 import Navigation from './components/Navbar';
+import Auth from './components/auth'; // Importa el componente Auth
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/support" element={<Support />} />
         <Route path="/wallet" element={<Wallet />} />
+        <Route path="/auth" element={<Auth />} /> {/* Nueva ruta para Auth */}
       </Routes>
     </Router>
   );
