@@ -13,7 +13,7 @@ def conectar_bd():
         # Leer la configuración de la base de datos desde un archivo config.json
         with open('config.json') as f:
             config = json.load(f)
-        database_config = config['database']
+        database_config = config['database']['execute']
 
         # Establecer la conexión a la base de datos
         conexion = mysql.connector.connect(

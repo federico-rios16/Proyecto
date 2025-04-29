@@ -13,5 +13,6 @@
             "database": "Alquileres",
             "username": "root"
         }
-    ]
+    ],
+    "codium.codeCompletion.enable": false
 }
