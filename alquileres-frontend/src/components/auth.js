@@ -14,23 +14,27 @@ const Auth = () => {
   };
 
   return (
-    <div>
+    <div className="auth-container">
       <button
-        className="auth-button"
+        className={`auth-glass-btn ${activeForm === 'register' ? 'active' : ''}`}
         onClick={handleRegisterClick}
         aria-pressed={activeForm === 'register'}
       >
+        <span role="img" aria-label="register">📝</span>
         {activeForm === 'register' ? 'Cerrar Registro' : 'Registro'}
       </button>
       <button
-        className="auth-button"
+        className={`auth-glass-btn ${activeForm === 'login' ? 'active' : ''}`}
         onClick={handleLoginClick}
         aria-pressed={activeForm === 'login'}
       >
+        <span role="img" aria-label="login">🔑</span>
         {activeForm === 'login' ? 'Cerrar Login' : 'Login'}
       </button>
-      {activeForm === 'register' && <Register />}
-      {activeForm === 'login' && <Login />}
+      <div className="auth-form-area">
+        {activeForm === 'register' && <Register />}
+        {activeForm === 'login' && <Login />}
+      </div>
     </div>
   );
 };

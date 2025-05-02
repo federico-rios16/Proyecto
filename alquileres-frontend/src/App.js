@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Auth from './components/Auth'; // Asegúrate de que la ruta sea correcta
 import Welcome from './components/Welcome';
 import Student from './components/Student';
 import Register from './components/Register';
@@ -8,7 +9,8 @@ import Dashboard from './components/Dashboard';
 import Support from './components/Support';
 import Wallet from './components/Wallet';
 import Navigation from './components/Navbar';
-import Auth from './components/auth'; // Importa el componente Auth
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
