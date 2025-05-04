@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_migrate import Migrate
 import webbrowser
 import bcrypt
 from flask_login import LoginManager, login_user, logout_user, login_required
 import os
 from extensiones import db
+from modelos import *
 from modelos import Usuario, Propiedad
 from servicio_usuario import ServicioUsuario
 
@@ -15,6 +17,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializar SQLAlchemy con la app
 db.init_app(app)
+
+# Inicializar Flask-Migrate
+migrate = Migrate(app, db)
 
 # Crear una instancia del servicio de usuario
 servicio_usuario = ServicioUsuario()

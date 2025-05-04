@@ -2,7 +2,6 @@ CREATE DATABASE IF NOT EXISTS Alquileres;
 
 USE Alquileres;
 
-#DROP DATABASE Alquileres;
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,9 +23,9 @@ CREATE TABLE IF NOT EXISTS propiedades (
     direccion VARCHAR(255),
     tipo VARCHAR(50),
     habitaciones INT,
-    baños INT,
+    banos INT,
     precio DECIMAL(10, 2),
-    disponible BOOLEAN,
+    disponible TINYINT(1) DEFAULT 1,
     imagenes TEXT,
     caracteristicas TEXT
 );
@@ -40,7 +39,7 @@ CREATE TABLE IF NOT EXISTS alquileres (
     precio_alquiler DECIMAL(10, 2),
     estado VARCHAR(50),
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
     FOREIGN KEY (id_propiedad) REFERENCES propiedades(id_propiedad)
 );
 
